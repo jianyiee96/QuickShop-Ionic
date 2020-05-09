@@ -20,6 +20,9 @@ export class TabProductsPage implements OnInit {
   public searchViewMode: boolean;
   public categories: Category[] = [];
 
+  public keyword: string;
+  public filteredItems: Item[];
+
   public resourcePath: string;
 
   constructor(
@@ -48,12 +51,12 @@ export class TabProductsPage implements OnInit {
     this.supermartketService.retrieveAllItemsFromSupermarkets(this.currentSupermarket.supermarketId).subscribe(
       response => {
         this.items = response.items;
+        this.filteredItems = response.items;
 
         let currCat: Category = this.items[0].category;
         this.categories.push(currCat);
         currCat.items = [];
         this.items.forEach(x => {
-
 
           if (x.category.categoryId != currCat.categoryId) {
 
@@ -70,14 +73,23 @@ export class TabProductsPage implements OnInit {
         console.log("total categories: " + this.categories.length);
 
         console.log("Category.item: " + this.categories[0].items);
-
-
       },
       error => {
         console.log(error);
       }
     )
+  }
 
+  onSearchChange(event: CustomEvent): void {
+    this.filteredItems = [];
+
+    this.items.forEach(i => {
+      if (i.itemName.toUpperCase().indexOf(event.detail.value.toUpperCase()) > -1) {
+        this.filteredItems.push(i);
+      }
+    });
+
+    // console.log(event.detail.value);
   }
 
   addItemToShoppingList(item: Item): void {
@@ -111,16 +123,12 @@ export class TabProductsPage implements OnInit {
   categoryView() {
     this.searchViewMode = false;
   }
-
-
+  
   searchView() {
     this.searchViewMode = true;
-
   }
 
   back(): void {
     this.location.back();
   }
-
-
 }
