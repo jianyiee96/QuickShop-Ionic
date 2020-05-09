@@ -20,9 +20,14 @@ export class SupermarketService {
     this.baseUrl = this.sessionService.getRootPath() + 'QuickShop';
   }
 
-
   retrieveAllSupermarkets(): Observable<any> {
     return this.httpClient.get<any>(this.baseUrl + "/retrieveAllSupermarkets").pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  retrieveAllItemsFromSupermarkets(superMarketId: number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + "/retrieveAllItemBySupermarket?supermarketId=" + superMarketId).pipe(
       catchError(this.handleError)
     )
   }

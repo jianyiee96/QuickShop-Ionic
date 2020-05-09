@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab-supermarket-layout',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabSupermarketLayoutPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
+
+  back(): void {
+    this.router.navigate(['/view-all-supermarkets']);
+  }
+
 
 }

@@ -1,6 +1,10 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>TabProducts</ion-title>
+  <ion-toolbar class="toolbar-background-color">
+    <ion-button (click)="back()" fill="clear">
+      <ion-icon slot="start" name="arrow-back-outline" size="large" style="color: rgb(8, 85, 85) !important;">
+      </ion-icon>
+    </ion-button>
+    <ion-title *ngIf="currentSupermarket != null">{{currentSupermarket.supermarketName}}<br />Products</ion-title>
   </ion-toolbar>
 </ion-header>
 

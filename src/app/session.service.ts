@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { Supermarket } from './customer/supermarket';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,15 @@ export class SessionService {
     }
   }
 
+  setCurrentSupermarket(currentSupermarket: Supermarket): void {
+    sessionStorage.currentSupermarket = JSON.stringify(currentSupermarket);
+  }
 
+  getCurrentSupermarket(): Supermarket {
+    if (sessionStorage.currentSupermarket != null) {
+      return JSON.parse(sessionStorage.currentSupermarket);
+    } else {
+      null;
+    }
+  }
 }
