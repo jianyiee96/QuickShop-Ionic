@@ -17,12 +17,12 @@ export class SupermarketService {
 
   constructor(private httpClient: HttpClient,
     private sessionService: SessionService) {
-    this.baseUrl = this.sessionService.getRootPath() + 'QuickQueue/';
+    this.baseUrl = this.sessionService.getRootPath() + 'QuickShop';
   }
 
 
   retrieveAllSupermarkets(): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl + "retrieveAllSupermarkets").pipe(
+    return this.httpClient.get<any>(this.baseUrl + "/retrieveAllSupermarkets").pipe(
       catchError(this.handleError)
     )
   }

@@ -29,8 +29,12 @@ export class ViewAllSupermarketsPage implements OnInit {
     )
   }
 
-  selectSupermarket(supermarket: Supermarket) {
+  selectSupermarket(supermarket: Supermarket): void {
     this.selectedSupermarket = supermarket;
+  }
+
+  confirm(): void {
+    this.router.navigate(['/tabs']);
   }
 
   back(): void {

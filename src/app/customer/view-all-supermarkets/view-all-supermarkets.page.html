@@ -15,7 +15,7 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-list *ngFor="let s of supermarkets">
+      <ion-list lines="full" *ngFor="let s of supermarkets">
 
         <ion-item style="margin-top: 15px;" (click)="selectSupermarket(s)" button>
           {{s.supermarketName}}
@@ -25,7 +25,7 @@
     </ion-card-content>
     <ion-button expand="block"
       style="--background: rgb(18, 189, 189) !important; --background-activated: rgb(18, 189, 189) !important; margin-top: 60px;"
-      *ngIf="selectedSupermarket">
+      *ngIf="selectedSupermarket" (click)="confirm()">
       Confirm
     </ion-button>
   </ion-card>
