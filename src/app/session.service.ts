@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { Supermarket } from './customer/supermarket';
+import { Item } from './customer/item';
 
 @Injectable({
   providedIn: 'root'
@@ -39,4 +40,17 @@ export class SessionService {
       null;
     }
   }
+
+  setShoppingList(shoppingList: Item[]): void {
+    sessionStorage.shoppingList = JSON.stringify(shoppingList);
+  }
+
+  getCurrentShoppingList(): Item[] {
+    if (sessionStorage.shoppingList != null) {
+      return JSON.parse(sessionStorage.shoppingList);
+    } else {
+      null;
+    }
+  }
+
 }
