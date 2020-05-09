@@ -13,7 +13,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
   }
 
-  checkin(): void {
+  checkIn(): void {
     this.router.navigate(['/view-all-supermarkets']);
   }
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Supermarket } from '../supermarket';
+import { SupermarketService } from '../supermarket.service';
 
 @Component({
   selector: 'app-view-all-supermarkets',
@@ -8,13 +10,34 @@ import { Router } from '@angular/router';
 })
 export class ViewAllSupermarketsPage implements OnInit {
 
-  constructor(private router: Router) { }
+  supermarkets: Supermarket[];
+  selectedSupermarket: Supermarket;
+
+  constructor(private router: Router,
+    private supermarketService: SupermarketService) {
+    this.supermarkets = new Array();
+  }
 
   ngOnInit() {
+    this.supermarketService.retrieveAllSupermarkets().subscribe(
+      response => {
+        this.supermarkets = response.supermarkets;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  selectSupermarket(supermarket: Supermarket) {
+    console.log(supermarket);
+    this.selectedSupermarket = supermarket;
   }
 
   back(): void {
     this.router.navigate(['/home']);
   }
+
+
 
 }
