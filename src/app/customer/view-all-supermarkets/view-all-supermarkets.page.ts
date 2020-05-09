@@ -30,7 +30,6 @@ export class ViewAllSupermarketsPage implements OnInit {
   }
 
   selectSupermarket(supermarket: Supermarket) {
-    console.log(supermarket);
     this.selectedSupermarket = supermarket;
   }
 
