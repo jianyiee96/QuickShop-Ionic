@@ -36,7 +36,13 @@ export class ViewAllSupermarketsPage implements OnInit {
   }
 
   confirm(): void {
-    this.sessionService.setCurrentSupermarket(this.selectedSupermarket);
+
+    if(this.sessionService.getCurrentSupermarket != this.selectSupermarket) {
+
+      this.sessionService.setCurrentSupermarket(this.selectedSupermarket);
+      this.sessionService.setShoppingList([]);
+    }
+
     this.router.navigate(['/tabs']);
   }
 

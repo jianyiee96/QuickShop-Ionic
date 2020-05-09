@@ -73,7 +73,6 @@ export class TabProductsPage implements OnInit {
         console.log("total categories: " + this.categories.length);
 
         console.log("Category.item: " + this.categories[0].items);
-
       },
       error => {
         console.log(error);
@@ -93,6 +92,30 @@ export class TabProductsPage implements OnInit {
     // console.log(event.detail.value);
   }
 
+  addItemToShoppingList(item: Item): void {
+    let shoppingList: Item[] = this.sessionService.getCurrentShoppingList();
+
+    if (shoppingList == null) {
+      shoppingList = [];
+    }
+    item.category = new Category(item.category.categoryId, item.category.categoryName);
+
+    let exists: boolean = false;
+
+    shoppingList.forEach(x => {
+      if (x.itemId == item.itemId) {
+        console.log("Item exists in the list");
+        exists = true;
+      }
+    });
+
+    if (!exists) {
+      shoppingList.unshift(item);
+      console.log("Added item. Current total items: " + shoppingList.length);
+      this.sessionService.setShoppingList(shoppingList);
+    }
+  }
+
   getCurrency(amount: number): string {
     return this.currencyPipe.transform(amount);
   }
@@ -100,7 +123,7 @@ export class TabProductsPage implements OnInit {
   categoryView() {
     this.searchViewMode = false;
   }
-
+  
   searchView() {
     this.searchViewMode = true;
   }
