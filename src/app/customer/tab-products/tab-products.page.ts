@@ -20,6 +20,8 @@ export class TabProductsPage implements OnInit {
   public searchViewMode: boolean;
   public categories: Category[] = [];
 
+  public resourcePath: string;
+
   constructor(
     private router: Router,
     private supermartketService: SupermarketService,
@@ -28,6 +30,7 @@ export class TabProductsPage implements OnInit {
     private currencyPipe: CurrencyPipe
   ) {
     this.items = [];
+    this.resourcePath = sessionService.getImageResourcePath();
   }
 
   ngOnInit() {

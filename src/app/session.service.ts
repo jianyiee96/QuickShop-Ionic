@@ -19,6 +19,15 @@ export class SessionService {
     }
   }
 
+  getImageResourcePath(): string {
+    if (this.platform.is('hybrid')) {
+      return "http://192.168.137.1:8080/QuickShop-war/Images/";
+    }
+    else {
+      return "http://localhost:8080/QuickShop-war/Images/";
+    }
+  }
+
   setCurrentSupermarket(currentSupermarket: Supermarket): void {
     sessionStorage.currentSupermarket = JSON.stringify(currentSupermarket);
   }
