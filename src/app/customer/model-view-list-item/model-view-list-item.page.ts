@@ -26,6 +26,14 @@ export class ModelViewListItemPage implements OnInit {
     this.currentItem = navParams.get('input');
     this.resourcePath = sessionService.getImageResourcePath();
     this.shoppingList = sessionService.getCurrentShoppingList();
+
+    this.shoppingList.forEach(x => {
+
+      if(x.itemId == this.currentItem.itemId){
+        this.currentItem = x;
+      }
+
+    });
     
   }
 

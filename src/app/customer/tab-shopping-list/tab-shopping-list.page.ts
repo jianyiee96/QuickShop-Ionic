@@ -45,6 +45,13 @@ export class TabShoppingListPage implements OnInit {
         'input': item
       }
     });
+
+    modal.onDidDismiss().then(
+      (data) => {
+        this.shoppingList = this.sessionService.getCurrentShoppingList();
+      }
+    );
+
     return await modal.present();
   }
 
