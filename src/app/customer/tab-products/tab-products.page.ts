@@ -4,6 +4,7 @@ import { Supermarket } from '../supermarket';
 import { SessionService } from 'src/app/session.service';
 import { SupermarketService } from '../supermarket.service';
 import { Item } from '../item';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-tab-products',
@@ -18,7 +19,8 @@ export class TabProductsPage implements OnInit {
   constructor(
     private router: Router,
     private supermartketService: SupermarketService,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private location: Location
   ) {
     this.items = [];
   }
@@ -35,10 +37,23 @@ export class TabProductsPage implements OnInit {
       this.back();
     }
 
+    this.supermartketService.retrieveAllItemsFromSupermarkets(this.currentSupermarket.supermarketId).subscribe(
+      response => {
+        this.items = response.items;
+
+        this.items.forEach(e => {
+          console.log(e);
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    )
+
   }
 
   back(): void {
-    this.router.navigate(['/view-all-supermarkets']);
+    this.location.back();
   }
 
 

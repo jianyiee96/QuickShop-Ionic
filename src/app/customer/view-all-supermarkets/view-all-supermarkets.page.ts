@@ -37,7 +37,6 @@ export class ViewAllSupermarketsPage implements OnInit {
 
   confirm(): void {
     this.sessionService.setCurrentSupermarket(this.selectedSupermarket);
-    console.log(this.selectedSupermarket)
     this.router.navigate(['/tabs']);
   }
 
