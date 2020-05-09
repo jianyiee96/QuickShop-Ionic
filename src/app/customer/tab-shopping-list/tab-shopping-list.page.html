@@ -10,4 +10,22 @@
 
 <ion-content>
 
+
+  <ion-list>
+
+    <ion-card *ngFor="let item of shoppingList"
+      (click)="viewModal(item)" style="background-color: rgb(252, 243, 231);">
+
+      <ion-card-header>
+        <ion-card-subtitle>{{item.itemName}}
+          <ion-icon *ngIf="item.checked != true" style="float:right" name="square-outline"></ion-icon>
+          <ion-icon *ngIf="item.checked == true" style="float:right" name="checkbox-outline"></ion-icon>
+        </ion-card-subtitle>
+      </ion-card-header>
+
+    </ion-card>
+
+  </ion-list>
+
+
 </ion-content>

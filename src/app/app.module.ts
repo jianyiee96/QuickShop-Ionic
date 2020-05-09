@@ -10,11 +10,13 @@ import { CurrencyPipe } from '@angular/common'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ModelViewListItemPage } from './customer/model-view-list-item/model-view-list-item.page';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, ModelViewListItemPage],
+  entryComponents: [ModelViewListItemPage],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  exports: [ModelViewListItemPage],
   providers: [
     CurrencyPipe,
     StatusBar,

@@ -12,6 +12,8 @@ export class Item {
     posX: number;
     posY: number
 
+    checked: boolean;
+
     constructor(category?: Category, imagePath?: string, itemDescription?: string, itemId?: number, itemName?: string, itemPrice?: number, itemQuantity?: number, posX?: number, posY?: number) {
         this.category = category;
         this.imagePath = imagePath;

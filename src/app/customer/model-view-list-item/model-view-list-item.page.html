@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Item Navigation</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  {{currentItem.itemName}}
+
+  {{currentItem.itemId}}
+
+  <ion-grid>
+
+    <ion-row class="controls">
+      
+      <ion-col ion-align-items-end>
+        <ion-icon name="remove-circle-outline" (click)="prevItem()"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <ion-icon name="checkbox" (click)="checkCurrentItem()"></ion-icon>
+      </ion-col>
+      <ion-col ion-align-items-end>
+        <ion-icon name="add-circle-outline" (click)="nextItem()"></ion-icon>
+      </ion-col>
+
+    </ion-row>
+    
+
+  
+  </ion-grid>
+
+
+
+</ion-content>
