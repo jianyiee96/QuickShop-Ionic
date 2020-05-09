@@ -34,35 +34,46 @@
         </ion-item-divider>
 
         <ion-item *ngFor="let item of c.items">
-
-          <ion-thumbnail slot="start" >
+          <ion-thumbnail slot="start">
             <img src="{{resourcePath+item.imagePath}}">
           </ion-thumbnail>
-          
+
           <ion-label>
             <h2><b>{{item.itemName}}</b></h2>
             <h2>{{getCurrency(item.itemPrice)}}</h2>
             <p>
               {{item.description}}
             </p>
-  
+
           </ion-label>
           <ion-icon slot="end" name="add-circle-outline" (click)="addItemToShoppingList(item)"></ion-icon>
         </ion-item>
-
-
-
-
       </ion-list>
-
     </ion-card>
-
 
     <ion-card *ngIf="searchViewMode">
-      Search Mode
 
+      <ion-searchbar placeholder="Search" inputmode="text" type="text" (ionChange)="onSearchChange($event)"></ion-searchbar>
+
+      <ion-list>
+        <ion-item *ngFor="let item of filteredItems">
+          <ion-thumbnail slot="start">
+            <img src="{{resourcePath+item.imagePath}}">
+          </ion-thumbnail>
+
+          <ion-label>
+            <h2><b>{{item.itemName}}</b></h2>
+            <h2>{{getCurrency(item.itemPrice)}}</h2>
+            <p>
+              {{item.description}}
+            </p>
+          </ion-label>
+
+          <ion-icon slot="end" name="add-circle-outline" (click)="addItemToShoppingList(item)"></ion-icon>
+
+        </ion-item>
+      </ion-list>
     </ion-card>
-
 
   </ion-card>
 </ion-content>
