@@ -5,7 +5,7 @@ import { SessionService } from 'src/app/session.service';
 import { Supermarket } from '../supermarket';
 import { SupermarketService } from '../supermarket.service';
 import { Item } from '../item';
-import { ModalController, LoadingController } from '@ionic/angular';
+import { ModalController, LoadingController, ToastController } from '@ionic/angular';
 import { ModelViewListItemPage } from '../model-view-list-item/model-view-list-item.page';
 import { disableDebugTools } from '@angular/platform-browser';
 import { ShortestPathService } from '../shortest-path.service';
@@ -27,6 +27,7 @@ export class TabShoppingListPage implements OnInit {
     private modalController: ModalController,
     private sessionService: SessionService,
     private shortestPathService: ShortestPathService,
+    private toastController: ToastController,
     private supermarketService: SupermarketService,
     public loadingController: LoadingController) {
 
@@ -62,10 +63,10 @@ export class TabShoppingListPage implements OnInit {
             }
           });
         });
-
+        this.toast("Items arranged in shortest path order!");
         this.sessionService.setShoppingList(processedShoppingList);
         this.ionViewWillEnter();
-        
+
       }, error => {
         
         this.loadingDismiss();
@@ -105,6 +106,15 @@ export class TabShoppingListPage implements OnInit {
     setTimeout(() => {
       return this.loadingController.dismiss();
     }, 1000);
+  }
+
+  async toast(toastMessage: string) {
+    const toast = await this.toastController.create({
+      message: toastMessage,
+      duration: 2000,
+      position: 'top',
+    });
+    toast.present();
   }
 
 }

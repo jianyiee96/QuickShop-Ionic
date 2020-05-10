@@ -22,15 +22,14 @@
   <img src="{{imagePath}}">
 
   <div style="text-align: center;">
-    <ion-button (click)="prevItem()" fill="clear" size="large">
-      <ion-icon slot="icon-only" name="arrow-back-circle-outline" style="color: rgb(5, 61, 61);"></ion-icon>
-    </ion-button>
-    <ion-button (click)="checkCurrentItem()" fill="clear" size="large">
-      <ion-icon slot="icon-only" name="checkmark-outline" style="color: rgb(5, 61, 61);"></ion-icon>
-    </ion-button>
-    <ion-button (click)="nextItem()" fill="clear" size="large">
-      <ion-icon slot="icon-only" name="arrow-forward-circle-outline" style="color: rgb(5, 61, 61);"></ion-icon>
-    </ion-button>
+      <ion-icon (click)="prevItem()" slot="icon-only" name="caret-back-outline" style="color: rgb(5, 61, 61); float:left" class="icon"></ion-icon>
+    
+      <ion-icon *ngIf="!currentItem.checked" (click)="checkCurrentItem()" slot="icon-only" name="square-outline" style="color: rgb(5, 61, 61);" class="icon"></ion-icon>
+
+      <ion-icon *ngIf="currentItem.checked" slot="icon-only" name="checkbox-outline" style="color: rgb(5, 61, 61);" class="icon"></ion-icon>
+  
+      <ion-icon (click)="nextItem()" slot="icon-only" name="caret-forward-outline" style="color: rgb(5, 61, 61); float: right" class="icon"></ion-icon>
+
   </div>
 
 </ion-content>

@@ -7,6 +7,7 @@ import { Item } from '../item';
 import { CurrencyPipe } from '@angular/common';
 import { Location } from '@angular/common';
 import { Category } from '../category';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab-products',
@@ -30,6 +31,7 @@ export class TabProductsPage implements OnInit {
     private supermartketService: SupermarketService,
     private sessionService: SessionService,
     private location: Location,
+    private toastController: ToastController,
     private currencyPipe: CurrencyPipe
   ) {
     this.items = [];
@@ -69,10 +71,6 @@ export class TabProductsPage implements OnInit {
           }
 
         });
-
-        console.log("total categories: " + this.categories.length);
-
-        console.log("Category.item: " + this.categories[0].items);
       },
       error => {
         console.log(error);
@@ -104,7 +102,8 @@ export class TabProductsPage implements OnInit {
 
     shoppingList.forEach(x => {
       if (x.itemId == item.itemId) {
-        console.log("Item exists in the list");
+        console.log("Item already exists in the list");
+        this.toast("Item already exists in the list.")
         exists = true;
       }
     });
@@ -112,8 +111,18 @@ export class TabProductsPage implements OnInit {
     if (!exists) {
       shoppingList.unshift(item);
       console.log("Added item. Current total items: " + shoppingList.length);
+      this.toast("Added item into shopping list!");
       this.sessionService.setShoppingList(shoppingList);
     }
+  }
+
+  async toast(toastMessage: string) {
+    const toast = await this.toastController.create({
+      message: toastMessage,
+      duration: 2000,
+      position: 'top',
+    });
+    toast.present();
   }
 
   getCurrency(amount: number): string {
