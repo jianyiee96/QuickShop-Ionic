@@ -10,30 +10,26 @@
 
 <ion-content>
 
-  {{currentItem.itemName}}
+  <ion-card style="box-shadow: none !important;">
+    <ion-card-content style="font-weight: bold; color: rgb(200, 236, 225);">
+      {{currentItem.itemName}}
+      <br />
+      Quantity: {{ currentItem.itemQuantity }}
+      <br />
+      Description: {{ currentItem.itemDescription }}
+    </ion-card-content>
+  </ion-card>
 
-  {{currentItem.itemId}}
+  <img src="{{imagePath}}">
 
-  <ion-grid>
-
-    <ion-row class="controls">
-      
-      <ion-col ion-align-items-end>
-        <ion-icon name="remove-circle-outline" (click)="prevItem()"></ion-icon>
-      </ion-col>
-      <ion-col>
-        <ion-icon name="checkbox" (click)="checkCurrentItem()"></ion-icon>
-      </ion-col>
-      <ion-col ion-align-items-end>
-        <ion-icon name="add-circle-outline" (click)="nextItem()"></ion-icon>
-      </ion-col>
-
-    </ion-row>
-    
-
-  
-  </ion-grid>
-
-
+  <div style="text-align: center;">
+    <ion-item lines="none">
+      <ion-icon slot="start" name="arrow-back-circle-outline" (click)="prevItem()" button></ion-icon>
+      <ion-button (click)="checkCurrentItem()" expand="block" fill="clear">
+        Tick <ion-icon name="checkbox"> </ion-icon>
+      </ion-button>
+      <ion-icon slot="end" name="arrow-forward-circle-outline" (click)="nextItem()" button></ion-icon>
+    </ion-item>
+  </div>
 
 </ion-content>

@@ -22,7 +22,7 @@
   <ion-card *ngIf="!searchViewMode">
     <ion-list *ngFor="let c of categories">
 
-      <ion-item-divider color="secondary">
+      <ion-item-divider color="success tint">
         <ion-label>
           <h2>
             <b>
@@ -39,11 +39,8 @@
 
         <ion-label>
           <h2><b>{{item.itemName}}</b></h2>
-          <h2>{{getCurrency(item.itemPrice)}}</h2>
-          <p>
-            {{item.description}}
-          </p>
-
+          <h3>Price: {{getCurrency(item.itemPrice)}}</h3>
+          <h3>Quantity: {{item.itemQuantity}}</h3>
         </ion-label>
         <ion-icon slot="end" name="add-circle-outline" (click)="addItemToShoppingList(item)"></ion-icon>
       </ion-item>
@@ -63,10 +60,8 @@
 
         <ion-label>
           <h2><b>{{item.itemName}}</b></h2>
-          <h2>{{getCurrency(item.itemPrice)}}</h2>
-          <p>
-            {{item.description}}
-          </p>
+          <h3>Price: {{getCurrency(item.itemPrice)}}</h3>
+          <h3>Quantity: {{item.itemQuantity}}</h3>
         </ion-label>
 
         <ion-icon slot="end" name="add-circle-outline" (click)="addItemToShoppingList(item)"></ion-icon>
