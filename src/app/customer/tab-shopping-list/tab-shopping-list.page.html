@@ -1,10 +1,16 @@
 <ion-header>
   <ion-toolbar class="toolbar-background-color">
-    <ion-button (click)="back()" fill="clear">
-      <ion-icon slot="start" name="arrow-back-outline" size="large" style="color: rgb(8, 85, 85) !important;">
+    <ion-button (click)="back()" fill="clear" slot="start">
+      <ion-icon  name="arrow-back-outline" size="large" style="color: rgb(8, 85, 85) !important;">
       </ion-icon>
     </ion-button>
     <ion-title>Shopping List</ion-title>
+
+    <ion-button (click)="shortestPath()" fill="clear" slot="end">
+      <ion-icon slot="end" name="analytics-outline" size="large" style="color: rgb(8, 85, 85) !important; float: right">
+      </ion-icon>
+    </ion-button>
+  
   </ion-toolbar>
 </ion-header>
 
