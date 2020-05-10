@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController, NavParams, ToastController } from '@ionic/angular';
 import { Item } from '../item';
 import { SessionService } from 'src/app/session.service';
 
@@ -20,6 +20,7 @@ export class ModelViewListItemPage implements OnInit {
   constructor(
     private modalController: ModalController,
     private navParams: NavParams,
+    private toastController: ToastController,
     private sessionService: SessionService) {
 
     this.currentItem = navParams.get('input');
@@ -44,7 +45,8 @@ export class ModelViewListItemPage implements OnInit {
           this.currentItem = this.shoppingList[idx + 1];
           return;
         } else {
-          console.log("No more next item.")
+          console.log("No more next item.");
+          this.toast("End of the list!");
         }
       }
       idx++;
@@ -55,7 +57,9 @@ export class ModelViewListItemPage implements OnInit {
 
   checkCurrentItem() {
     this.currentItem.checked = true;
+    this.toast("Checked item!");
     this.sessionService.setShoppingList(this.shoppingList);
+    
   }
 
   prevItem() {
@@ -67,7 +71,8 @@ export class ModelViewListItemPage implements OnInit {
           this.currentItem = this.shoppingList[idx - 1];
           return;
         } else {
-          console.log("No more prev item.")
+          console.log("No more prev item.");
+          this.toast("Head of the list!");
         }
       }
       idx++;
@@ -77,12 +82,20 @@ export class ModelViewListItemPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log("Init");
   }
 
   dismissModal() {
     this.modalController.dismiss({
       'dismissed': true
     });
+  }
+
+  async toast(toastMessage: string) {
+    const toast = await this.toastController.create({
+      message: toastMessage,
+      duration: 2000,
+      position: 'top',
+    });
+    toast.present();
   }
 }
