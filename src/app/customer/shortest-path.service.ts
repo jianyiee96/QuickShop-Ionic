@@ -12,25 +12,25 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class SupermarketService {
+export class ShortestPathService {
 
   baseUrl: string;
 
   constructor(private httpClient: HttpClient,
     private sessionService: SessionService) {
-    this.baseUrl = this.sessionService.getRootPath() + 'QuickShop';
+    this.baseUrl = this.sessionService.getRootPath() + 'Path';
   }
 
-  retrieveAllSupermarkets(): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl + "/retrieveAllSupermarkets").pipe(
-      catchError(this.handleError)
-    )
-  }
+  shortestPath(supermarketId: number, items: Item[]): Observable<any> {
 
-  retrieveAllItemsFromSupermarkets(superMarketId: number): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl + "/retrieveAllItemBySupermarket?supermarketId=" + superMarketId).pipe(
+    let filterItemsListReq = {
+      "supermarketId": supermarketId,
+      "items": items
+    };
+
+    return this.httpClient.put<any>(this.baseUrl, filterItemsListReq, httpOptions).pipe(
       catchError(this.handleError)
-    )
+    );
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -47,5 +47,6 @@ export class SupermarketService {
 
     return throwError(errorMessage);
   }
+
 
 }
