@@ -18,12 +18,14 @@
       <ion-list lines="full" *ngFor="let s of supermarkets">
 
         <ion-item style="margin-top: 15px;" (click)="selectSupermarket(s)" button>
-          {{s.supermarketName}}
+          <ion-label style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+            {{s.supermarketName}}
+          </ion-label>
         </ion-item>
 
       </ion-list>
     </ion-card-content>
-    <ion-button expand="block"
+    <ion-button expand="block" size="large"
       style="--background: rgb(18, 189, 189) !important; --background-activated: rgb(18, 189, 189) !important; margin-top: 60px;"
       *ngIf="selectedSupermarket" (click)="confirm()">
       Confirm

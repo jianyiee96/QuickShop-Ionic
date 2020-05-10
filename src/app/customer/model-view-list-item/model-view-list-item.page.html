@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="background-color: rgb(109, 173, 173); color: rgb(5, 61, 61);">Item Navigation</ion-title>
+    <ion-button color="dark" slot="end" (click)="dismissModal()" fill="clear" stlye="background-color: rgb(5, 61, 61);">
+      <ion-icon slot="icon-only" name="close-outline" style="color: rgb(5, 61, 61);"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card style="box-shadow: none !important;">
+    <ion-card-content style="font-weight: bold; color: rgb(21, 130, 138);">
+      {{currentItem.itemName}}
+      <br />
+      Quantity: {{ currentItem.itemQuantity }}
+      <br />
+      Description: {{ currentItem.itemDescription }}
+    </ion-card-content>
+  </ion-card>
+
+  <img src="{{imagePath}}">
+
+  <div style="text-align: center;">
+    <ion-button (click)="prevItem()" fill="clear" size="large">
+      <ion-icon slot="icon-only" name="arrow-back-circle-outline" style="color: rgb(5, 61, 61);"></ion-icon>
+    </ion-button>
+    <ion-button (click)="checkCurrentItem()" fill="clear" size="large">
+      <ion-icon slot="icon-only" name="checkmark-outline" style="color: rgb(5, 61, 61);"></ion-icon>
+    </ion-button>
+    <ion-button (click)="nextItem()" fill="clear" size="large">
+      <ion-icon slot="icon-only" name="arrow-forward-circle-outline" style="color: rgb(5, 61, 61);"></ion-icon>
+    </ion-button>
+  </div>
+
+</ion-content>

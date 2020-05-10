@@ -1,9 +1,73 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>TabProducts</ion-title>
+  <ion-toolbar class="toolbar-background-color">
+    <ion-button (click)="back()" fill="clear">
+      <ion-icon slot="start" name="arrow-back-outline" size="large" style="color: rgb(8, 85, 85) !important;">
+      </ion-icon>
+    </ion-button>
+    <ion-title *ngIf="currentSupermarket != null">{{currentSupermarket.supermarketName}}<br />Products</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-segment style="--background: rgb(212, 238, 243); margin-top: 25px;" scrollable="true" value="category">
+    <ion-segment-button style="--color: black; --indicator-color: rgb(181, 210, 214);" value="category" (click)="categoryView()">
+      <ion-label>Categories</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button style="--color: black; --indicator-color: rgb(181, 210, 214);" value="search" (click)="searchView()">
+      <ion-label>Search</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-card *ngIf="!searchViewMode">
+    <ion-list *ngFor="let c of categories">
+
+      <ion-item-divider color="success tint">
+        <ion-label>
+          <h2>
+            <b>
+              {{c.categoryName}}
+            </b>
+          </h2>
+        </ion-label>
+      </ion-item-divider>
+
+      <ion-item *ngFor="let item of c.items">
+        <ion-thumbnail slot="start">
+          <img src="{{resourcePath+item.imagePath}}">
+        </ion-thumbnail>
+
+        <ion-label>
+          <h2><b>{{item.itemName}}</b></h2>
+          <h3>Price: {{getCurrency(item.itemPrice)}}</h3>
+          <h3>Quantity: {{item.itemQuantity}}</h3>
+        </ion-label>
+        <ion-icon slot="end" name="add-circle-outline" (click)="addItemToShoppingList(item)"></ion-icon>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card *ngIf="searchViewMode">
+
+    <ion-searchbar placeholder="Search" inputmode="text" type="text" (ionChange)="onSearchChange($event)">
+    </ion-searchbar>
+
+    <ion-list>
+      <ion-item *ngFor="let item of filteredItems">
+        <ion-thumbnail slot="start">
+          <img src="{{resourcePath+item.imagePath}}">
+        </ion-thumbnail>
+
+        <ion-label>
+          <h2><b>{{item.itemName}}</b></h2>
+          <h3>Price: {{getCurrency(item.itemPrice)}}</h3>
+          <h3>Quantity: {{item.itemQuantity}}</h3>
+        </ion-label>
+
+        <ion-icon slot="end" name="add-circle-outline" (click)="addItemToShoppingList(item)"></ion-icon>
+
+      </ion-item>
+    </ion-list>
+  </ion-card>
 
 </ion-content>

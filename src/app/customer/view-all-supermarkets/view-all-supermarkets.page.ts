@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { Supermarket } from '../supermarket';
 import { SupermarketService } from '../supermarket.service';
+import { SessionService } from 'src/app/session.service';
 
 @Component({
   selector: 'app-view-all-supermarkets',
@@ -14,7 +15,8 @@ export class ViewAllSupermarketsPage implements OnInit {
   selectedSupermarket: Supermarket;
 
   constructor(private router: Router,
-    private supermarketService: SupermarketService) {
+    private supermarketService: SupermarketService,
+    private sessionService: SessionService) {
     this.supermarkets = new Array();
   }
 
@@ -34,13 +36,17 @@ export class ViewAllSupermarketsPage implements OnInit {
   }
 
   confirm(): void {
+
+    if(this.sessionService.getCurrentSupermarket != this.selectSupermarket) {
+
+      this.sessionService.setCurrentSupermarket(this.selectedSupermarket);
+      this.sessionService.setShoppingList([]);
+    }
+
     this.router.navigate(['/tabs']);
   }
 
   back(): void {
     this.router.navigate(['/home']);
   }
-
-
-
 }

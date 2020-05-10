@@ -1,9 +1,30 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>TabShoppingList</ion-title>
+  <ion-toolbar class="toolbar-background-color">
+    <ion-button (click)="back()" fill="clear" slot="start">
+      <ion-icon  name="arrow-back-outline" size="large" style="color: rgb(8, 85, 85) !important;">
+      </ion-icon>
+    </ion-button>
+    <ion-title>Shopping List</ion-title>
+
+    <ion-button (click)="shortestPath()" fill="clear" slot="end">
+      <ion-icon slot="end" name="analytics-outline" size="large" style="color: rgb(8, 85, 85) !important; float: right">
+      </ion-icon>
+    </ion-button>
+  
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-card *ngFor="let item of shoppingList"
+      (click)="viewModal(item)" style="background-color: rgba(77, 201, 170, 0.247);">
 
+      <ion-card-header>
+        <ion-card-subtitle style="--color: rgb(15, 107, 95);">{{item.itemName}}
+          <ion-icon *ngIf="item.checked != true" style="float:right" name="square-outline"></ion-icon>
+          <ion-icon *ngIf="item.checked == true" style="float:right" name="checkbox-outline"></ion-icon>
+        </ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+  </ion-list>
 </ion-content>
